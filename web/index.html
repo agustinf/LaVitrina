@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title></title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.lazyload.js" type="text/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function() {
+	  alert("heu");	
+	  $.getJSON('/items.json', function(data) {
+	  var items = [];
+	  $.each(data, function(key, val) {
+
+	    items.push('<li><img class="lazy" src="grey.gif" data-original="' + val.image[0] + '" width="640" heigh="480"/></li>');
+	  });
+
+	  $('<ul/>', {
+	    'class': 'my-new-list',
+	    html: items.join('')
+	  }).appendTo('body');
+	  $("img.lazy").lazyload({ threshold : 200 });
+	});
+});
+
+</script>
+
+</body>
+</html>
